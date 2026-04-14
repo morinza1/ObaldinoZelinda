@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodas de Ouro - 50 Anos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Mea+Culpa&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { height: 100%; overflow-x: hidden; font-family: 'Montserrat', sans-serif; }
+
+        /* Tela de entrada */
+        #overlay-entrada {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fdfbf7; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 1000;
+            transition: opacity 1s ease, visibility 1s;
+        }
+        #overlay-entrada h2 { font-family: 'Mea Culpa', cursive; font-size: 4rem; color: #b8860b; margin-bottom: 20px; text-align: center; padding: 0 20px; }
+        
+        .btn-abrir { padding: 15px 40px; background-color: #d4af37; color: white; border: none; border-radius: 30px; font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; }
+        .escondido { opacity: 0; visibility: hidden; }
+
+        /* Vídeo de Fundo */
+        .video-background { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; filter: blur(8px) brightness(1.0); transform: scale(1.1); }
+        .video-background video { width: 100vw; height: 100vh; object-fit: cover; }
+
+        /* Container Principal */
+        .container { min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; background: rgba(0, 0, 0, 0.2); }
+        
+        .convite { background: rgba(255, 255, 255, 0.9); width: 100%; max-width: 400px; padding: 40px 25px; border: 2px solid #d4af37; border-radius: 15px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.3); position: relative; }
+        .convite::after { content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid #d4af37; border-radius: 10px; pointer-events: none; }
+
+        h1 { font-family: 'Mea Culpa', cursive; font-size: 3.5rem; color: #b8860b; margin-bottom: 10px; line-height: 1.2; }
+        .subtitulo { text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; color: #666; margin-bottom: 25px; font-weight: 600; }
+        .nomes { font-size: 1.6rem; color: #333; margin-bottom: 25px; }
+        .info { border-top: 1px solid #eee; padding-top: 20px; font-size: 0.9rem; line-height: 1.8; }
+        .destaque { display: block; font-weight: 600; font-size: 1.1rem; color: #b8860b; }
+        
+        .botao, .botao-mapa { display: inline-block; width: 100%; max-width: 250px; padding: 15px; border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 15px; }
+        .botao { background-color: #d4af37; color: white; }
+        .botao-mapa { background-color: #8b6d11; color: white; font-size: 0.9rem; }
+        
+        .prazo-confirmacao { display: block; margin: 20px 0 10px 0; font-size: 0.85rem; color: #8b6d11; font-weight: 600; font-style: italic; }
+
+        /* Controle Áudio */
+        .controles-audio { position: fixed; bottom: 25px; right: 25px; z-index: 100; background: rgba(212, 175, 55, 0.9); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; border: 2px solid #fff; }
+
+        /* Estilo Expirado */
+        #mensagem-expirado { text-align: center; padding: 40px 20px; }
+        #mensagem-expirado h2 { font-family: 'Mea Culpa', cursive; font-size: 3.5rem; color: #b8860b; }
+
+        @media (max-width: 480px) {
+            h1, #overlay-entrada h2 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="overlay-entrada">
+        <h2>Obaldino & Zelinda</h2>
+        <button class="btn-abrir" onclick="começarConvite()">Abrir Convite</button>
+    </div>
+
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dlkrcnzio/video/upload/v1776136433/vecteezy_slowly-moving-golden-lines-placed-diagonally-luxury-white_44179484_oaozoz.mp4" type="video/mp4">
+        </video>
+    </div>
+	
+    <div class="container" id="conteudo-convite">
+        <div class="convite">
+            <div class="subtitulo">Celebração de</div>
+            <h1>Bodas de Ouro</h1>
+            <p style="margin-bottom: 20px;">Há 50 anos, o "sim" uniu nossas vidas. Hoje, convidamos você para celebrar esse meio século de amor.</p>
+            <div class="nomes">Obaldino & Zelinda</div>
+            <div class="info">
+                <span class="destaque">Sábado, 20 de Junho</span>
+                <span>À partir das 18h</span><br>
+                <span>Salão Casagrande Festas</span>
+            </div>
+            <span class="prazo-confirmacao">Esperamos por você! Por favor, confirme sua presença até 01/06/2026.</span>
+            <a href="https://wa.me/555491734664?text=Olá!+Confirmo+presença" class="botao">Confirmar Presença</a>
+            <a href="https://www.google.com/maps/place/Av.+Dr.+Assis+Ant%C3%B4nio+Mariani,+877+-+Esplanada,+Caxias+do+Sul+-+RS,+95095-100/@-29.1984276,-51.2044055,17z/data=!3m1!4b1!4m6!3m5!1s0x951ea368a2c23c07:0x6198ea73c0a01ab3!8m2!3d-29.1984276!4d-51.2044055!16s%2Fg%2F11wbwnhzb6?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="botao-mapa">📍 Ver Local no Mapa</a>
+        </div>
+    </div>
+
+    <div class="container" id="tela-expirada" style="display: none;">
+        <div class="convite">
+            <div id="mensagem-expirado">
+                <h2>Bodas de Ouro</h2>
+                <p>O prazo para este convite expirou em 01/06/2026.</p>
+            </div>
+        </div>
+    </div>
+
+    <iframe id="sc-player" style="display:none" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/813599689&auto_play=false" allow="autoplay"></iframe>
+    <div class="controles-audio" onclick="toggleSoundCloud()" id="audioBtn">♪</div>
+
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script>
+        var widgetIframe = document.getElementById('sc-player');
+        var widget = SC.Widget(widgetIframe);
+        var tocando = false;
+
+        function começarConvite() {
+            document.getElementById('overlay-entrada').classList.add('escondido');
+            widget.play();
+            tocando = true;
+        }
+
+        function toggleSoundCloud() {
+            var btn = document.getElementById('audioBtn');
+            if (!tocando) {
+                widget.play();
+                btn.innerHTML = '♪';
+                tocando = true;
+            } else {
+                widget.pause();
+                btn.innerHTML = '✕';
+                tocando = false;
+            }
+        }
+
+        function verificarDataBomba() {
+            // TESTE: Coloquei dia 12 de Abril. Como hoje é 14, ele deve "explodir".
+            var dataLimite = new Date(2026, 5, 2); 
+            var dataAtual = new Date();
+
+            if (dataAtual > dataLimite) {
+                document.getElementById('conteudo-convite').style.display = 'none';
+                document.getElementById('tela-expirada').style.display = 'flex';
+                var overlay = document.getElementById('overlay-entrada');
+                if(overlay) overlay.style.display = 'none';
+            }
+        }
+        verificarDataBomba();
+    </script>
+</body>
+</html>
